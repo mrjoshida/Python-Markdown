@@ -430,8 +430,6 @@ class ImagePattern(LinkPattern):
             el.set('src', self.sanitize_url(self.unescape(src)))
         else:
             el.set('src', "")
-        if len(src_parts) > 1:
-            el.set('title', dequote(self.unescape(" ".join(src_parts[1:]))))
 
         if self.markdown.enable_attributes:
             truealt = handleAttributes(m.group(2), el)
