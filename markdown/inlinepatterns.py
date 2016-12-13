@@ -423,9 +423,8 @@ class ImagePattern(LinkPattern):
     """ Return a img element from the given match. """
     def handleMatch(self, m):
         el = util.etree.Element("img")
-        src_parts = m.group(9)
-        if src_parts:
-            src = src_parts[0]
+        src = m.group(9)
+        if src:
             if src[0] == "<" and src[-1] == ">":
                 src = src[1:-1]
             el.set('src', self.sanitize_url(self.unescape(src)))
