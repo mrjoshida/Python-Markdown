@@ -131,7 +131,7 @@ LINK_RE = NOIMG + BRK + \
     r'''\(\s*(<.*?>|((?:(?:\(.*?\))|[^\(\)]))*?)\s*((['"])(.*?)\12\s*)?\)'''
 
 # ![alttxt](http://x.com/) or ![alttxt](<http://x.com/>)
-IMAGE_LINK_RE = r'\!' + BRK + r'\s*\(\s*(<.*?>|([^"\)\s]+\s*"[^"]*"|[^\)]*))\s*\)'
+IMAGE_LINK_RE = r'\!' + BRK + r'\s*\(\s*(<.*?>|([^"\)\s]+\s*"[^"]*"|[^\)\s]*))\s*\)'
 
 # [Google][3]
 REFERENCE_RE = NOIMG + BRK + r'\s?\[([^\]]*)\]'
@@ -423,7 +423,7 @@ class ImagePattern(LinkPattern):
     """ Return a img element from the given match. """
     def handleMatch(self, m):
         el = util.etree.Element("img")
-        src_parts = m.group(9).split()
+        src = m.group(9)
         if src_parts:
             src = src_parts[0]
             if src[0] == "<" and src[-1] == ">":
